@@ -8,7 +8,6 @@ class LibraryApp
     {
         LibraryCatalog catalog = new LibraryCatalog();
         ErrorHandler errorHandler = new ErrorHandler();
-        List<Book> books = new List<Book>();
         //Data Dummy
         catalog.AddBook("Matematika", "prof. Rizki", 2013);
         catalog.AddBook("Pemograma C#", "Atoi s.comp", 2023);
@@ -56,7 +55,7 @@ class LibraryApp
 
                 case "2":
                     Console.Clear();
-                    catalog.ShowBook(books);
+                    catalog.ListBook();
                     Console.WriteLine("--------------------------");
                     Console.WriteLine("      MENU BOOK");
                     Console.WriteLine("--------------------------");

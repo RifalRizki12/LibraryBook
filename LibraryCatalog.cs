@@ -9,7 +9,7 @@ namespace LibraryBook
 {
     public class LibraryCatalog
     {
-        public List<Book> books = new List<Book>();
+        static List<Book> books = new List<Book>();
         ErrorHandler errorHandler = new ErrorHandler();
 
         public void ShowBook(List<Book> listBook)
@@ -26,6 +26,11 @@ namespace LibraryBook
                     $"\nAuthor : {book.Author}" +
                     $"\nPublication Year : {book.PublicationYear}\n");
             }
+        }
+
+        public void ListBook()
+        {
+            ShowBook(books);
         }
         public void AddBook(string addTitle, string addAuthor, int addPublication)
         {
