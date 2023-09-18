@@ -20,7 +20,7 @@ class LibraryApp
             Console.WriteLine("==========================");
             Console.WriteLine("1. Add Book");
             Console.WriteLine("2. List Book");
-            Console.WriteLine("2. Find Book");
+            Console.WriteLine("3. Find Book");
             Console.WriteLine("3. Exit");
             Console.Write("\nMasukkan Pilihan : ");
             string choice = Console.ReadLine();
@@ -46,6 +46,7 @@ class LibraryApp
                     {
                         Console.WriteLine("\nInput tidak valid. Harap masukkan angka.");
                     }
+                    Console.Write("Tekan Enter untuk kembali !!! ");
                     Console.ReadLine();
                     break;
 
@@ -99,8 +100,30 @@ class LibraryApp
                                 Console.ReadLine();
                                 break;
 
+                            case "2":
+                                Console.WriteLine("--------------------------");
+                                Console.Write("Masukkan Id Book yang ingin di hapus : ");
+                                if (int.TryParse(Console.ReadLine(), out int deleteId))
+                                {
+                                    catalog.deleteBook(deleteId);
+                                }
+                                Console.ReadLine();
+                                break;
+
+                            case "3":
+                                continue;
                         }
-                    }
+                    }break;
+
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("---------------------------------------------");
+                    Console.Write("Masukkan Title/Author Book yang ingin dicari : ");
+                    string searchName = Console.ReadLine();
+                    catalog.searchBook(searchName);
+                    Console.Write("Tekan Enter Untuk Kembali !!!");
+                    Console.ReadLine();
+                    break;
             }
         }
         

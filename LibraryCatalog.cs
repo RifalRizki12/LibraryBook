@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LibraryBook
@@ -16,7 +17,7 @@ namespace LibraryBook
             Console.WriteLine("     Daftar Book");
             Console.WriteLine("==========================\n");
 
-            foreach (Book book in books)
+            foreach (Book book in listBook)
             {
                 Console.WriteLine(
                     $"ID : {book.Id} " +
@@ -70,6 +71,21 @@ namespace LibraryBook
             else
             {
                 Console.WriteLine($"Data dengan id {id} tidak ada !");
+            }
+        }
+
+        public void searchBook(string book)
+        {
+            var searchUser = books.Where(u => Regex.IsMatch(u.Title, book, RegexOptions.IgnoreCase) ||
+                                          Regex.IsMatch(u.Author, book, RegexOptions.IgnoreCase)).ToList();
+
+            if (searchUser.Count == 0)
+            {
+                Console.WriteLine("Tidak ada book yang cocok dengan kata kunci yang diberikan !");
+            }
+            else
+            {
+                ShowBook(searchUser);
             }
         }
 
