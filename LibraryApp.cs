@@ -6,12 +6,11 @@ class LibraryApp
 {
     public static void Main(string[] args)
     {
-        LibraryCatalog catalog = new LibraryCatalog();
         ErrorHandler errorHandler = new ErrorHandler();
         //Data Dummy
-        catalog.AddBook("Matematika", "prof. Rizki", 2013);
-        catalog.AddBook("Pemograma C#", "Atoi s.comp", 2023);
-        catalog.AddBook("Belajar Membaca", "Bila", 2009);
+        LibraryCatalog.catalog.AddBook(new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 1997));
+        LibraryCatalog.catalog.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
+        LibraryCatalog.catalog.AddBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925));
 
         string book;
 
@@ -43,7 +42,7 @@ class LibraryApp
                     book = Console.ReadLine();
                     if (errorHandler.TryParseInt(book, out int publication))
                     {
-                        catalog.AddBook(title, author, publication);
+                        LibraryCatalog.catalog.AddBook(new Book(title,author,publication));
                     }
                     else
                     {
@@ -55,7 +54,7 @@ class LibraryApp
 
                 case "2":
                     Console.Clear();
-                    catalog.ListBook();
+                    LibraryCatalog.catalog.ShowAllBook();
                     Console.WriteLine("--------------------------");
                     Console.WriteLine("      MENU BOOK");
                     Console.WriteLine("--------------------------");
@@ -73,7 +72,7 @@ class LibraryApp
                             book = Console.ReadLine();
                             if (errorHandler.TryParseInt(book, out int editId))
                             {
-                                Book bookToEdit = catalog.FindBookById(editId);
+                                Book bookToEdit = LibraryCatalog.catalog.FindBookById(editId);
                                 if (bookToEdit != null)
                                 {
                                     Console.Write("Masukkan Title Baru : ");
@@ -84,7 +83,7 @@ class LibraryApp
                                     book = Console.ReadLine();
                                     if (errorHandler.TryParseInt(book, out int newPublication))
                                     {
-                                        catalog.editBook(editId, newTitle, newAuthor, newPublication);
+                                        LibraryCatalog.catalog.editBook(editId, newTitle, newAuthor, newPublication);
 
                                     }
                                     else
@@ -111,7 +110,8 @@ class LibraryApp
                             book = Console.ReadLine();
                             if (errorHandler.TryParseInt(book, out int deleteId))
                             {
-                                catalog.deleteBook(deleteId);
+                                Book bookToDelete = LibraryCatalog.catalog.FindBookById(deleteId); // Anda perlu mencari buku berdasarkan ID atau cara lain sebelumnya
+                                LibraryCatalog.catalog.deleteBook(bookToDelete);
                             }
                             else
                             {
@@ -131,9 +131,11 @@ class LibraryApp
                     Console.WriteLine("---------------------------------------------");
                     Console.Write("Masukkan Title/Author Book yang ingin dicari : ");
                     string searchName = Console.ReadLine();
-                    if (searchName != "")
+                    Book bukuDitemukan = LibraryCatalog.catalog.FindBook(searchName);
+                    if (bukuDitemukan != null)
                     {
-                        catalog.searchBook(searchName);
+                        // Buku ditemukan, Anda dapat menampilkan detail buku ini.
+                        LibraryCatalog.catalog.ShowSearchBook(bukuDitemukan);
                     }
                     else
                     {

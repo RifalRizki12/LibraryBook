@@ -36,7 +36,7 @@ namespace LibraryBook
                 Console.WriteLine("\nInput tidak valid. Pastikan semua kolom diisi!");
                 return false; // Jika input tidak valid, keluar dari metode.
             }
-            if (ContainsDigits(title) || ContainsDigits(author))
+            if (ContainsDigits(author))
             {
                 Console.WriteLine("\nJudul dan penulis tidak boleh mengandung angka !\n");
                 return false; // Input mengandung angka, kembalikan false.

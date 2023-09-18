@@ -14,9 +14,8 @@ namespace LibraryBook
         public int PublicationYear { get; set; }
 
         public Book() { }
-        public Book(int id, string title, string author, int publicationYear)
+        public Book(string title, string author, int publicationYear)
         {
-            Id = id;
             Title = title;
             Author = author;
             PublicationYear = publicationYear;
