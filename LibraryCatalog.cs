@@ -10,6 +10,7 @@ namespace LibraryBook
     public class LibraryCatalog
     {
         List<Book> books = new List<Book>();
+        ErrorHandler errorHandler = new ErrorHandler();
 
         public void ShowBook(List<Book> listBook)
         {
@@ -28,6 +29,11 @@ namespace LibraryBook
         }
         public void AddBook(string addTitle, string addAuthor, int addPublication)
         {
+            if (!errorHandler.HandleBookError(addTitle, addAuthor, addPublication))
+            {
+                // Input tidak valid, keluar dari metode
+                return;
+            }
             int nextId = 1; // Menentukan ID berikutnya
             if (books.Count > 0)
             {
@@ -41,6 +47,7 @@ namespace LibraryBook
 
             Book newBook = new Book(nextId, addTitle, addAuthor, addPublication);
             books.Add(newBook);
+            ShowBook(books);
             Console.WriteLine("Data Buku berhasil ditambah !!!\n");
         }
 
