@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LibraryBook
 {
@@ -30,7 +31,18 @@ namespace LibraryBook
                 Console.WriteLine("\nInput tidak valid. Pastikan semua kolom diisi!");
                 return false; // Jika input tidak valid, keluar dari metode.
             }
+            if (ContainsDigits(title) || ContainsDigits(author))
+            {
+                Console.WriteLine("\nJudul dan penulis tidak boleh mengandung angka !\n");
+                return false; // Input mengandung angka, kembalikan false.
+            }
             return true;
+        }
+
+        private bool ContainsDigits(string input)
+        {
+            // Menggunakan regex untuk mencari angka dalam string
+            return Regex.IsMatch(input, @"\d");
         }
     }
 }

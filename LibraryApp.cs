@@ -24,7 +24,7 @@ class LibraryApp
             Console.WriteLine("1. Add Book");
             Console.WriteLine("2. List Book");
             Console.WriteLine("3. Find Book");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("4. Exit");
             Console.Write("\nMasukkan Pilihan : ");
             string choice = Console.ReadLine();
 
@@ -55,71 +55,76 @@ class LibraryApp
 
                 case "2":
                     Console.Clear();
+                    catalog.ShowBook(books);
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("      MENU BOOK");
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("1. Edit Book");
+                    Console.WriteLine("2. Delete Book");
+                    Console.WriteLine("3. Back");
+                    Console.Write("Masukkan Pilihan : ");
+                    string pilih = Console.ReadLine();
 
-                    while (true)
+                    switch (pilih)
                     {
-                        Console.Clear();
-                        catalog.ShowBook(books);
-                        Console.WriteLine("--------------------------");
-                        Console.WriteLine("      MENU BOOK");
-                        Console.WriteLine("--------------------------");
-                        Console.WriteLine("1. Edit Book");
-                        Console.WriteLine("2. Delete Book");
-                        Console.WriteLine("3. Back");
-                        Console.Write("Masukkan Pilihan : ");
-                        string pilih = Console.ReadLine();
-
-                        switch(pilih)
-                        {
-                            case "1":
-                                Console.WriteLine("--------------------------");
-                                Console.Write("Masukkan Id yang ingin di edit : ");
-                                book = Console.ReadLine();
-                                if (errorHandler.TryParseInt(book, out int editId))
+                        case "1":
+                            Console.WriteLine("--------------------------");
+                            Console.Write("Masukkan Id yang ingin di edit : ");
+                            book = Console.ReadLine();
+                            if (errorHandler.TryParseInt(book, out int editId))
+                            {
+                                Book bookToEdit = catalog.FindBookById(editId);
+                                if (bookToEdit != null)
                                 {
-                                    Book bookToEdit = catalog.FindBookById(editId);
-                                    if (bookToEdit != null)
+                                    Console.Write("Masukkan Title Baru : ");
+                                    string newTitle = Console.ReadLine();
+                                    Console.Write("Masukkan Author Baru : ");
+                                    string newAuthor = Console.ReadLine();
+                                    Console.Write("Masukkan PublicationYear Baru : ");
+                                    book = Console.ReadLine();
+                                    if (errorHandler.TryParseInt(book, out int newPublication))
                                     {
-                                        Console.Write("Masukkan Title Baru : ");
-                                        string newTitle = Console.ReadLine();
-                                        Console.Write("Masukkan Author Baru : ");
-                                        string newAuthor = Console.ReadLine();
-                                        Console.Write("Masukkan PublicationYear Baru : ");
-                                        book = Console.ReadLine(); 
-                                        if (errorHandler.TryParseInt(book, out int newPublication))
-                                        {
-                                            catalog.editBook(editId, newTitle, newAuthor, newPublication);
-
-                                        }
-                                        else
-                                        {
-                                            errorHandler.HandleInvalidInput();
-                                        }
+                                        catalog.editBook(editId, newTitle, newAuthor, newPublication);
 
                                     }
                                     else
                                     {
-                                        errorHandler.HandleBookNotFound();
+                                        errorHandler.HandleInvalidInput();
                                     }
                                 }
-                                Console.ReadLine();
-                                break;
-
-                            case "2":
-                                Console.WriteLine("--------------------------");
-                                Console.Write("Masukkan Id Book yang ingin di hapus : ");
-                                book = Console.ReadLine();
-                                if (errorHandler.TryParseInt(book, out int deleteId))
+                                else
                                 {
-                                    catalog.deleteBook(deleteId);
+                                    errorHandler.HandleBookNotFound();
                                 }
-                                Console.ReadLine();
-                                break;
+                            }
+                            else
+                            {
+                                errorHandler.HandleInvalidInput();
+                            }
+                            Console.Write("Tekan Enter Untuk Kembali !!!");
+                            Console.ReadLine();
+                            break;
 
-                            case "3":
-                                continue;
-                        }
-                    }break;
+                        case "2":
+                            Console.WriteLine("--------------------------");
+                            Console.Write("Masukkan Id Book yang ingin di hapus : ");
+                            book = Console.ReadLine();
+                            if (errorHandler.TryParseInt(book, out int deleteId))
+                            {
+                                catalog.deleteBook(deleteId);
+                            }
+                            else
+                            {
+                                errorHandler.HandleInvalidInput();
+                            }
+                            Console.Write("Tekan Enter Untuk Kembali !!!");
+                            Console.ReadLine();
+                            break;
+
+                        case "3":
+                            break;
+                    }
+                    break;
 
                 case "3":
                     Console.Clear();
@@ -129,6 +134,10 @@ class LibraryApp
                     catalog.searchBook(searchName);
                     Console.Write("Tekan Enter Untuk Kembali !!!");
                     Console.ReadLine();
+                    break;
+
+                case "4":
+                    Environment.Exit(0);
                     break;
             }
         }

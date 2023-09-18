@@ -48,7 +48,7 @@ namespace LibraryBook
             Book newBook = new Book(nextId, addTitle, addAuthor, addPublication);
             books.Add(newBook);
             ShowBook(books);
-            Console.WriteLine("Data Buku berhasil ditambah !!!\n");
+            Console.WriteLine("\nData Buku berhasil ditambah !!!");
         }
 
         public Book FindBookById(int id)
@@ -58,6 +58,12 @@ namespace LibraryBook
 
         public void editBook(int id, string newTitle, string newAuthor, int newPublication)
         {
+            if (!errorHandler.HandleBookError(newTitle, newAuthor, newPublication))
+            {
+                // Input tidak valid, keluar dari metode
+                return;
+            }
+
             Book bookEdit = FindBookById(id);
 
             bookEdit.Title = newTitle;
