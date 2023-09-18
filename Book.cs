@@ -20,5 +20,13 @@ namespace LibraryBook
             Author = author;
             PublicationYear = publicationYear;
         }
+
+        public override String ToString()
+        {
+            return  "ID\t\t : "+ Id + 
+                    "\nTitle\t\t : " + Title +
+                    "\nAuthor\t\t : " + Author +
+                    "\nPublication Year : " + PublicationYear;
+        }
     }
 }

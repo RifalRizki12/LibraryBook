@@ -54,7 +54,7 @@ class LibraryApp
 
                 case "2":
                     Console.Clear();
-                    LibraryCatalog.catalog.ShowAllBook();
+                    LibraryCatalog.catalog.ShowBook();
                     Console.WriteLine("--------------------------");
                     Console.WriteLine("      MENU BOOK");
                     Console.WriteLine("--------------------------");

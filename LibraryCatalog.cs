@@ -9,7 +9,7 @@ namespace LibraryBook
 {
     public class LibraryCatalog
     {
-        static List<Book> books = new List<Book>();
+        public static List<Book> books = new List<Book>();
         ErrorHandler errorHandler = new ErrorHandler();
         public static LibraryCatalog catalog = new LibraryCatalog();
 
@@ -18,25 +18,22 @@ namespace LibraryBook
             Console.WriteLine("==========================");
             Console.WriteLine("     Daftar Book");
             Console.WriteLine("==========================\n");
-
-            Console.WriteLine($"ID : {book.Id}");
-            Console.WriteLine($"Judul : {book.Title}");
-            Console.WriteLine($"Penulis : {book.Author}");
-            Console.WriteLine($"Tahun Terbit : {book.PublicationYear}\n");
+            Console.WriteLine(book.ToString() + "\n");
         }
 
-        public void ShowAllBook()
+        public void ShowBook()
         {
             Console.WriteLine("==========================");
             Console.WriteLine("     Daftar Buku");
             Console.WriteLine("==========================\n");
+            if (books.Count == 0)
+            {
+                Console.WriteLine("TIDAK ADA DATA BUKU");
+            }
 
             foreach (Book book in books)
             {
-                Console.WriteLine($"ID : {book.Id}");
-                Console.WriteLine($"Judul : {book.Title}");
-                Console.WriteLine($"Penulis : {book.Author}");
-                Console.WriteLine($"Tahun Terbit : {book.PublicationYear}\n");
+                Console.WriteLine(book.ToString() + "\n");
             }
         }
 
