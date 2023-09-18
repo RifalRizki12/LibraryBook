@@ -13,25 +13,22 @@ namespace LibraryBook
         ErrorHandler errorHandler = new ErrorHandler();
         public static LibraryCatalog catalog = new LibraryCatalog();
 
-        public void ShowSearchBook(Book book)
+        public void ShowAllBook()
         {
-            Console.WriteLine("==========================");
-            Console.WriteLine("     Daftar Book");
-            Console.WriteLine("==========================\n");
-            Console.WriteLine(book.ToString() + "\n");
+            ShowBook(books);
         }
 
-        public void ShowBook()
+        public void ShowBook(List<Book> booksToShow)
         {
             Console.WriteLine("==========================");
             Console.WriteLine("     Daftar Buku");
             Console.WriteLine("==========================\n");
-            if (books.Count == 0)
+            if (booksToShow.Count == 0)
             {
                 Console.WriteLine("Tidak ada data buku");
             }
 
-            foreach (Book book in books)
+            foreach (Book book in booksToShow)
             {
                 Console.WriteLine(book.ToString() + "\n");
             }
@@ -63,6 +60,19 @@ namespace LibraryBook
         public Book FindBookById(int id)
         {
             return books.FirstOrDefault(u => u.Id == id);
+        }
+
+        public List<Book> FindBooksByKeyword(string keyword)
+        {
+            // Menggunakan ToLowerInvariant() untuk memastikan pencarian tanpa memperhatikan besar huruf.
+            keyword = keyword.ToLowerInvariant();
+
+            List<Book> foundBooks = books
+                .Where(book => book.Title.ToLowerInvariant().Contains(keyword) ||
+                               book.Author.ToLowerInvariant().Contains(keyword))
+                .ToList();
+
+            return foundBooks;
         }
 
         public Book FindBook(string title)

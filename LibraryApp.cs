@@ -54,7 +54,7 @@ class LibraryApp
 
                 case "2":
                     Console.Clear();
-                    LibraryCatalog.catalog.ShowBook();
+                    LibraryCatalog.catalog.ShowAllBook();
                     Console.WriteLine("--------------------------");
                     Console.WriteLine("      MENU BOOK");
                     Console.WriteLine("--------------------------");
@@ -131,11 +131,11 @@ class LibraryApp
                     Console.WriteLine("---------------------------------------------");
                     Console.Write("Masukkan Title Book yang ingin dicari : ");
                     string searchName = Console.ReadLine();
-                    Book foundBook = LibraryCatalog.catalog.FindBook(searchName);
-                    if (foundBook != null)
+                    List<Book> foundBooks = LibraryCatalog.catalog.FindBooksByKeyword(searchName);
+                    if (foundBooks.Count > 0)
                     {
                         // Buku ditemukan, Anda dapat menampilkan detail buku ini.
-                        LibraryCatalog.catalog.ShowSearchBook(foundBook);
+                        LibraryCatalog.catalog.ShowBook(foundBooks);
                     }
                     else
                     {
