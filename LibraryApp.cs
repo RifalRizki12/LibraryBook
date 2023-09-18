@@ -129,13 +129,13 @@ class LibraryApp
                 case "3":
                     Console.Clear();
                     Console.WriteLine("---------------------------------------------");
-                    Console.Write("Masukkan Title/Author Book yang ingin dicari : ");
+                    Console.Write("Masukkan Title Book yang ingin dicari : ");
                     string searchName = Console.ReadLine();
-                    Book bukuDitemukan = LibraryCatalog.catalog.FindBook(searchName);
-                    if (bukuDitemukan != null)
+                    Book foundBook = LibraryCatalog.catalog.FindBook(searchName);
+                    if (foundBook != null)
                     {
                         // Buku ditemukan, Anda dapat menampilkan detail buku ini.
-                        LibraryCatalog.catalog.ShowSearchBook(bukuDitemukan);
+                        LibraryCatalog.catalog.ShowSearchBook(foundBook);
                     }
                     else
                     {

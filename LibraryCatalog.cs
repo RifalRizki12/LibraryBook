@@ -9,7 +9,7 @@ namespace LibraryBook
 {
     public class LibraryCatalog
     {
-        public static List<Book> books = new List<Book>();
+        static List<Book> books = new List<Book>();
         ErrorHandler errorHandler = new ErrorHandler();
         public static LibraryCatalog catalog = new LibraryCatalog();
 
@@ -28,7 +28,7 @@ namespace LibraryBook
             Console.WriteLine("==========================\n");
             if (books.Count == 0)
             {
-                Console.WriteLine("TIDAK ADA DATA BUKU");
+                Console.WriteLine("Tidak ada data buku");
             }
 
             foreach (Book book in books)
