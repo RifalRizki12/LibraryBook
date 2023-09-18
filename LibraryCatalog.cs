@@ -9,7 +9,7 @@ namespace LibraryBook
 {
     public class LibraryCatalog
     {
-        List<Book> books = new List<Book>();
+        public List<Book> books = new List<Book>();
         ErrorHandler errorHandler = new ErrorHandler();
 
         public void ShowBook(List<Book> listBook)
@@ -94,7 +94,7 @@ namespace LibraryBook
 
             if (searchUser.Count == 0)
             {
-                Console.WriteLine("Tidak ada book yang cocok dengan kata kunci yang diberikan !");
+                errorHandler.HandleSearchNotFound();
             }
             else
             {

@@ -9,6 +9,7 @@ class LibraryApp
         LibraryCatalog catalog = new LibraryCatalog();
         ErrorHandler errorHandler = new ErrorHandler();
         List<Book> books = new List<Book>();
+        //Data Dummy
         catalog.AddBook("Matematika", "prof. Rizki", 2013);
         catalog.AddBook("Pemograma C#", "Atoi s.comp", 2023);
         catalog.AddBook("Belajar Membaca", "Bila", 2009);
@@ -131,7 +132,14 @@ class LibraryApp
                     Console.WriteLine("---------------------------------------------");
                     Console.Write("Masukkan Title/Author Book yang ingin dicari : ");
                     string searchName = Console.ReadLine();
-                    catalog.searchBook(searchName);
+                    if (searchName != "")
+                    {
+                        catalog.searchBook(searchName);
+                    }
+                    else
+                    {
+                        errorHandler.HandleBookNotFound();
+                    }
                     Console.Write("Tekan Enter Untuk Kembali !!!");
                     Console.ReadLine();
                     break;

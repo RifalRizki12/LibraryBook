@@ -21,7 +21,12 @@ namespace LibraryBook
 
         public void HandleBookNotFound()
         {
-            Console.WriteLine("Buku tidak ditemukan, Coba Lagi !");
+            Console.WriteLine("\nBuku tidak ditemukan, Coba Lagi !");
+        }
+
+        public void HandleSearchNotFound()
+        {
+            Console.WriteLine("\nTidak ada book yang cocok dengan kata kunci yang diberikan !");
         }
 
         public bool HandleBookError(string title, string author, int publicationYear)
