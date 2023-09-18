@@ -139,7 +139,7 @@ class LibraryApp
                     }
                     else
                     {
-                        errorHandler.HandleBookNotFound();
+                        errorHandler.HandleSearchNotFound();
                     }
                     Console.Write("Tekan Enter Untuk Kembali !!!");
                     Console.ReadLine();
